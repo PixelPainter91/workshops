@@ -1,0 +1,20 @@
+{
+  "name": "03-pure-function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vitest": "^4.0.15",
+    "type": "module"
+  }
+  
+}
