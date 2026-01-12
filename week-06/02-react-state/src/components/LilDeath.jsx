@@ -1,0 +1,104 @@
+import { useEffect, useState } from "react";
+import "./LilDeath.css";
+
+import idleGif from "../assets/images/idledeathweapon1.gif";
+import moveLeft from "../assets/images/idlemoveright.gif";
+import moveRight from "../assets/images/idlemoveleft.gif";
+import attackLeft from "../assets/images/idledeathweaponattackleftt.gif";
+import attackRight from "../assets/images/idledeathweaponattackrightt.gif";
+
+export default function LilDeath() {
+  const [controlEnabled, setControlEnabled] = useState(false);
+  const [position, setPosition] = useState({ x: 100, y: 100 });
+  const [keysPressed, setKeysPressed] = useState({});
+  const [attacking, setAttacking] = useState(false);
+  const [direction, setDirection] = useState("right");
+
+  const moveSpeed = 10;
+  const attackDuration = 1300;
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (!controlEnabled) return;
+      if ((e.key === "a" || e.key === "A") && !attacking) {
+        setAttacking(true);
+        setTimeout(() => setAttacking(false), attackDuration);
+      }
+      setKeysPressed((prev) => ({ ...prev, [e.key]: true }));
+      setPosition((prev) => {
+        let { x, y } = prev;
+        if (e.key === "ArrowLeft") {
+          x -= moveSpeed;
+          setDirection("left");
+        }
+        if (e.key === "ArrowRight") {
+          x += moveSpeed;
+          setDirection("right");
+        }
+        if (e.key === "ArrowUp") y -= moveSpeed;
+        if (e.key === "ArrowDown") y += moveSpeed;
+        return { x, y };
+      });
+    }
+
+    function handleKeyUp(e) {
+      setKeysPressed((prev) => ({ ...prev, [e.key]: false }));
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [controlEnabled, attacking]);
+  
+  
+
+  let sprite;
+  if (attacking) sprite = direction === "left" ? attackLeft : attackRight;
+  else if (keysPressed["ArrowLeft"]) sprite = moveLeft;
+  else if (keysPressed["ArrowRight"]) sprite = moveRight;
+  else sprite = idleGif;
+
+  return (
+    <>
+      <div className="dark-overlay" />
+      <div
+        className="lildeath-wrapper"
+        style={{
+          position: "fixed",
+          left: position.x,
+          top: position.y,
+          width: "420px",
+          height: "420px",
+          zIndex: "1",
+        }}
+      >
+        <div
+          className="flashlight"
+          style={{ 
+            left: position.x + 420/ 2, 
+            top: position.y + 420 / 2, 
+        }}
+        />
+        <img
+          src={sprite}
+          alt="LilDeath"
+          className="lildeath"
+          onClick={() => setControlEnabled(true)}
+          draggable={false}
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "257.6px",
+            height: "auto",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+      </div>
+    </>
+  );
+}
