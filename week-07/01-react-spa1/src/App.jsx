@@ -9,10 +9,13 @@ import UserProfile from "./pages/UserProfile";
 import Staff from "./pages/Staff";
 import StaffMember from "./pages/StaffMember";
 import UserPostsPage from "./pages/UserPostsPage";
+import SortOrderForm from "./pages/SortOrderForm";
+
 function App() {
   return (
 <>
       <Navbar />
+      
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/" element={<HomePage />} />
@@ -24,6 +27,7 @@ function App() {
           <Route element={<StaffMember />} path={":staffMember"} />
           </Route>
       </Routes>
+       
   </>
   );
 }

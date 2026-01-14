@@ -3,6 +3,7 @@ import "./Navbar.css";
 import About from "../../pages/About";
 import HomePage from "../../pages/HomePage";
 
+
 export default function Navbar() {
   return (
     <nav className="navbar">
@@ -13,6 +14,9 @@ export default function Navbar() {
 
         <li className="nav-item">
           <Link to="/about">About</Link>
+        </li>
+        <li className="nav-item">
+           <Link to="/Staff">Staff</Link>
         </li>
 
         <li className="nav-item">
