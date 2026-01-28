@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+//Clerk componetns for UI
+import { UserButton, SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Navbar.module.css";
@@ -42,10 +44,6 @@ useEffect(() => {
             <Link href="/about">About</Link>
           </li>
 
-          <li className={styles.navItem}>
-            <Link href="/mypage">My Page</Link>
-          </li>
-
           <li className={styles.navItem} ref={menuRef}>
             <button
               type="button"
@@ -53,13 +51,18 @@ useEffect(() => {
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((prev) => !prev)}
             >
-              My Profile
+                Profile
             </button>
 
             <ul
   className={`${styles.subMenu} ${menuOpen ? styles.subMenuOpen : ""}`}
   role="menu"
 >
+    <li role="menuitem"> 
+            <Link href="/mypage">My Page</Link>
+          </li>
+
+
               <li role="menuitem">
                 <button
                   className={styles.chatBtn}
@@ -78,13 +81,15 @@ useEffect(() => {
           </li>
 
           <li>
-            <Image
-              className={styles.navAvatar}
-              src="/assets/profileavatar.png"
-              alt="Profile avatar"
-              width={40}
-              height={40}
-            />
+            <SignedOut>
+            <SignInButton/>
+            <SignUpButton/>
+
+        </SignedOut>
+        
+        <SignedIn>
+            <UserButton/>
+        </SignedIn>
           </li>
         </ul>
       </nav>
