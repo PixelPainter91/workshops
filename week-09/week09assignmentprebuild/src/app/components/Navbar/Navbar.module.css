@@ -1,16 +1,24 @@
 .navbar {
-  position: fixed;
+ position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #61bd81;
-  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+
+  padding: 0.75rem 1.25rem;
   font-family: sans-serif;
   z-index: 1000;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 
 .logo {
   color: #000;
@@ -30,7 +38,7 @@
 
 .navbar a,
 .navbar button {
-  color: #f9fafb;
+  color: #1f2937;
   text-decoration: none;
   padding: 0.5rem 1rem;
   background: none;
@@ -41,7 +49,7 @@
 
 .navbar a:hover,
 .navbar button:hover {
-  background-color: #374151;
+  background-color: #f5c103;
   border-radius: 0.25rem;
 }
 
@@ -155,7 +163,7 @@
 }
 
 .send {
-  background-color: #61bd81;
+  background-color: #f5c103;
   color: #fff;
 }
 

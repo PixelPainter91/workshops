@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-//Clerk componetns for UI
 import { UserButton, SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
@@ -33,7 +32,7 @@ useEffect(() => {
   return (
     <>
       <nav className={styles.navbar}>
-        <h2 className={styles.logo}>Wonder</h2>
+        <h2 className={styles.logo}>Scrapbook</h2>
 
         <ul>
           <li className={styles.navItem}>
